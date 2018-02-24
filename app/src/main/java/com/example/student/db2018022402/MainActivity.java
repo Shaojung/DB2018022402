@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     ListView lv;
@@ -25,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
         cities[1] = new City("台中", "04", R.drawable.tc);
         cities[2] = new City("台南", "06", R.drawable.tn);
         cities[3] = new City("高雄", "07", R.drawable.kh);
-
-
     }
 
     class MyAdapter extends BaseAdapter
@@ -48,12 +48,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
             View v = inflater.inflate(R.layout.item1, null);
             TextView tv = v.findViewById(R.id.textView);
             TextView tv2 = v.findViewById(R.id.textView2);
             ImageView iv = v.findViewById(R.id.imageView);
+            Button btn = v.findViewById(R.id.button);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, cities[position].cityname, Toast.LENGTH_SHORT).show();
+                }
+            });
             tv.setText(cities[position].cityname );
             tv2.setText(cities[position].citycode );
             iv.setImageResource(cities[position].cityimg);
