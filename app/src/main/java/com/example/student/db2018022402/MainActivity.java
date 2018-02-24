@@ -13,9 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     ListView lv;
     MyAdapter adapter;
-    String[] cities = {"台北", "台中", "台南", "高雄"};
-    String[] codes = {"02", "04", "06", "07"};
-    int[] imgs = {R.drawable.tpe, R.drawable.tc, R.drawable.tn, R.drawable.kh};
+    City cities[] = new City[4];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +21,12 @@ public class MainActivity extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.listView);
         adapter = new MyAdapter();
         lv.setAdapter(adapter);
+        cities[0] = new City("台北", "02", R.drawable.tpe);
+        cities[1] = new City("台中", "04", R.drawable.tc);
+        cities[2] = new City("台南", "06", R.drawable.tn);
+        cities[3] = new City("高雄", "07", R.drawable.kh);
+
+
     }
 
     class MyAdapter extends BaseAdapter
@@ -50,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
             TextView tv = v.findViewById(R.id.textView);
             TextView tv2 = v.findViewById(R.id.textView2);
             ImageView iv = v.findViewById(R.id.imageView);
-            tv.setText(cities[position] );
-            tv2.setText(codes[position] );
-            iv.setImageResource(imgs[position]);
+            tv.setText(cities[position].cityname );
+            tv2.setText(cities[position].citycode );
+            iv.setImageResource(cities[position].cityimg);
             return v;
         }
     }
