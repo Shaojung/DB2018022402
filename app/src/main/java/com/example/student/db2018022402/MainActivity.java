@@ -12,7 +12,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     ListView lv;
     MyAdapter adapter;
-    String[] fruits = {"蘋果", "香蕉", "鳳梨", "西瓜", "草莓"};
+    String[] cities = {"台北", "台中", "台南", "高雄"};
+    String[] codes = {"02", "04", "06", "07"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return fruits.length;
+            return cities.length;
         }
 
         @Override
@@ -45,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
             LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
             View v = inflater.inflate(R.layout.item1, null);
             TextView tv = v.findViewById(R.id.textView);
-            tv.setText(fruits[position] );
+            TextView tv2 = v.findViewById(R.id.textView2);
+            tv.setText(cities[position] );
+            tv2.setText(codes[position] );
             return v;
         }
     }
